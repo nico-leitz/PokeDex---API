@@ -1,0 +1,23 @@
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: var(--background-color-header-footer);
+    height: 80px;
+}
+
+.footer_area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-color-header-footer);
+    max-width: 1920px;
+    width: 100%;
+    max-height: 60px;
+}
+
+#footer_copyright {
+    color: rgba(255, 255, 255, 0.626);
+    font-size: 16px;
+}

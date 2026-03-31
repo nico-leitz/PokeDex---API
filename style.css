@@ -1,0 +1,33 @@
+@import "./styles/header.css";
+@import "./styles/main.css";
+@import "./styles/footer.css";
+
+:root {
+  --main-font-size: 16px;
+  --main-font-color: white;
+  --background-color-header-footer: #092029;
+  --background-color-main: #06171e;
+  --content-limitation: 1920px;
+  --base-img-width-nm: 150px;
+  --base-img-height-nm: 150px;
+  --base-img-width-wm: 560px;
+  --base-img-height-wm: 375px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    min-height: 100dvh;
+}
+
+body {
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+}

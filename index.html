@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+
+    <title>Pokedex - API</title>
+</head>
+<body onload="renderPokemonCart();">
+    <header>
+        <section class="header">
+            <div class="header_title">
+                <h2>PokeDex</h2>
+            </div>
+            <div class="header_input">
+                <input id="header_input_field" type="text" placeholder="...search">
+                <img id="search_icon" src="./assets/img/header_input_search.png" alt="search icon">
+            </div>
+        </section>
+    </header>
+
+    <main>
+        <section id="pokemon_render_area" class="pokemon_render_area">
+           
+        </section>
+    </main>
+
+    <footer>
+        <section class="footer_area">
+            <h2 id="footer_copyright">Nico Leitz 2026 ©</h2>
+        </section>
+    </footer>
+    
+    <script src="./scripts/template.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
