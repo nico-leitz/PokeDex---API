@@ -15,7 +15,8 @@
                 <h2>PokeDex</h2>
             </div>
             <div class="header_input">
-                <input id="header_input_field" type="text" placeholder="...search">
+                <input onclick="checkPokemonWithLetters()" id="header_input_field" type="text" placeholder="...search">
+                <p id="render_input_error"></p>
                 <img id="search_icon" src="./assets/img/header_input_search.png" alt="search icon">
             </div>
         </section>
@@ -23,11 +24,15 @@
 
     <main>
         <section id="pokemon_render_area" class="pokemon_render_area">
-           
+
         </section>
     </main>
 
+    <section id="show_more_button_area">
+        <button id="show_more_button" onclick="init()">Show more!</button>
+    </section>
     <footer>
+
         <section class="footer_area">
             <h2 id="footer_copyright">Nico Leitz 2026 ©</h2>
         </section>

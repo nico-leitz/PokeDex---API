@@ -1,9 +1,12 @@
 let fetchUrl = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20";
+let fetchUrlTypes = "https://pokeapi.co/api/v2/type/"
 let loadedPokemonDetails = [];
+let loadedPokemonTypes = [];
 
 async function init() {
     await getJsonObject();
     renderPokemonCart();
+    getJsonObjectForPokemonTypes();
 }
 
 async function getJsonObject() {
@@ -12,6 +15,8 @@ async function getJsonObject() {
         let fetchObj = await fetchUrlHttpResponse.json();
         console.log(fetchObj);
 
+        fetchUrl = fetchObj.next
+
         for (let index = 0; index < fetchObj.results.length; index++) {
             let basicPokemon = fetchObj.results[index];
             let pkmnDetails = await getJsonObjectForPokemonDetails(basicPokemon.url);
@@ -19,7 +24,24 @@ async function getJsonObject() {
             if (pkmnDetails) {
                 loadedPokemonDetails.push(pkmnDetails);
             }
+           
         }
+         console.log(loadedPokemonDetails)
+
+      } 
+    catch (error) {
+        let errorMessage = document.getElementById("pokemon_render_area");
+        errorMessage.innerHTML = errorMsgHTML(error);
+        console.warn(error);
+    }
+}
+
+async function getJsonObjectForPokemonTypes() {
+    try {
+        let fetchUrlHttpResponsePkmnDetails = await fetch(fetchUrlTypes);
+        let fetchPokemonTypesObj = await fetchUrlHttpResponsePkmnDetails.json();
+        console.log(fetchPokemonTypesObj);
+
     } catch (error) {
         let errorMessage = document.getElementById("pokemon_render_area");
         errorMessage.innerHTML = errorMsgHTML(error);
@@ -33,6 +55,7 @@ async function getJsonObjectForPokemonDetails(url) {
         let fetchPokemonDetailsObj = await fetchUrlHttpResponsePkmnDetails.json();
         console.log(fetchPokemonDetailsObj);
         return fetchPokemonDetailsObj;
+
     } catch (error) {
         let errorMessage = document.getElementById("pokemon_render_area");
         errorMessage.innerHTML = errorMsgHTML(error);
@@ -42,6 +65,23 @@ async function getJsonObjectForPokemonDetails(url) {
 
 function renderPokemonDetailsLoop() {
     
+}
+
+function checkPokemonType2() {
+    
+}
+
+function checkPokemonWithLetters() {
+    let inputRef = document.getElementById("search_icon")
+
+    if(loadedPokemonDetails.length != 3) {
+        let renderInputErrorRef = document.getElementById("render_input_error")
+        renderInputErrorRef.innerHTML = `Please enter at least 3 letters`
+    }
+    else {
+        inputRef.value = inputResult
+        loadedPokemonDetails.indexOf(inputResult)
+    }
 }
 
 function renderPokemonCart() {
@@ -69,4 +109,3 @@ function renderPokemonCart() {
 
     renderArea.innerHTML = cartContent;
 }
-

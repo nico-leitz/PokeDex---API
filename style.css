@@ -1,6 +1,7 @@
 @import "./styles/header.css";
 @import "./styles/main.css";
 @import "./styles/footer.css";
+@import "./styles/button.css";
 
 :root {
   --main-font-size: 16px;
