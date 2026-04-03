@@ -3,32 +3,109 @@
 @import "./styles/footer.css";
 @import "./styles/button.css";
 
+@font-face {
+  font-family: "Press Start 2P";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../assets/fonts/PressStart2P-Regular.ttf") format("woff2");
+}
+
 :root {
-  --main-font-size: 16px;
-  --main-font-color: white;
-  --background-color-header-footer: #092029;
-  --background-color-main: #06171e;
+  --main-font-size: 12px;
+  --main-font-color: #1e293b;
+  --background-color-header-footer: #ffffff;
+  --background-color-main: #eef2f7;
   --content-limitation: 1920px;
+
   --base-img-width-nm: 150px;
   --base-img-height-nm: 150px;
   --base-img-width-wm: 560px;
   --base-img-height-wm: 375px;
+
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-light: #94a3b8;
+
+  --card-background: #ffffff;
+  --card-border: #e2e8f0;
+
+  --accent-red: #ef4444;
+  --accent-red-hover: #dc2626;
+
+  --shadow-soft: 0 6px 18px rgba(15, 23, 42, 0.08);
+  --shadow-card: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --shadow-card-hover: 0 14px 28px rgba(15, 23, 42, 0.14);
+
+  --radius-sm: 10px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;
-    min-height: 100dvh;
+  scroll-behavior: smooth;
+  min-height: 100dvh;
+  font-size: 12px;
 }
 
 body {
-    font-size: 16px;
-    display: flex;
-    flex-direction: column;
-    min-height: 100dvh;
+  font-size: var(--main-font-size);
+  color: var(--main-font-color);
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  font-family: "Press Start 2P", monospace;
+  line-height: 1.7;
+  background-color: var(--background-color-main);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button {
+  font: inherit;
+}
+
+input {
+  font-size: 10px;
+}
+
+button {
+  cursor: pointer;
+  font-size: 9px;
+  transition: 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 11px;
+  }
+
+  body {
+    font-size: 11px;
+  }
+
+  input {
+    font-size: 8px;
+  }
+
+  button {
+    font-size: 8px;
+  }
 }

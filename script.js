@@ -16,7 +16,6 @@ async function initShiny() {
     getJsonObjectForPokemonTypes();
 }
 
-
 async function getJsonObject() {
     try {
         let fetchUrlHttpResponse = await fetch(fetchUrl);
@@ -77,71 +76,52 @@ function renderPokemonDetailsLoop() {
 }
 
 function playPokemonAudio(index) {
-    new Audio(loadedPokemonDetails[index].cries.latest).play();
-}
-
-function checkPokemonWithLetters() {
-    let inputRef = document.getElementById("search_icon")
-
-    if(loadedPokemonDetails.length != 3) {
-        let renderInputErrorRef = document.getElementById("render_input_error")
-        renderInputErrorRef.innerHTML = `Please enter at least 3 letters`
-    }
-    else {
-        inputRef.value = inputResult
-        loadedPokemonDetails.indexOf(inputResult)
-    }
+   let audio = new Audio(loadedPokemonDetails[index].cries.legacy);
+   audio.volume = 0.05
+   audio.play()
 }
 
 function renderPokemonCart() {
     let renderArea = document.getElementById("pokemon_render_area");
-    let cartContent = "";
+    let input = document.getElementById("header_input_field").value.toLowerCase();
+    let content = "";
 
-    console.log(loadedPokemonDetails);
+    for (let i = 0; i < loadedPokemonDetails.length; i++) {
+        let pokemon = loadedPokemonDetails[i];
 
-    for (let index = 0; index < loadedPokemonDetails.length; index++) {
-        console.log(loadedPokemonDetails)
-        const currentPokemon = loadedPokemonDetails[index];
+        if (!renderSearchedPokemon(pokemon, input)) {
+            continue;
+        }
+
+        let [id, name, url, type1, type2Check] = renderPokemonCartVariables(pokemon);
+        content += renderPokemonCartHTML(i, name, url, id, type1, type2Check);
+    }
+
+    renderArea.innerHTML = content;
+}
+
+function renderPokemonCartVariables(currentPokemon) {
         let id = currentPokemon.id;
         let name = currentPokemon.name.charAt(0).toUpperCase() + currentPokemon.name.slice(1);
         let url = currentPokemon.sprites.front_default;
         let type1 = currentPokemon.types[0].type.name;
         let type2 = currentPokemon.types[1]?.type.name;
-      
         let type2Check = type2 ? `<p>${type2}</p>` : ""
 
-        type2HTML = type2Check
+        return [id, name, url, type1, type2Check]
+}   
 
-        console.log(renderPokemonCartHTML(index, name, url, id, type1, type2Check));
-        cartContent += renderPokemonCartHTML(index, name, url, id, type1, type2Check);
+function renderSearchedPokemon(pokemon, input) {
+    let showErrorRef = document.getElementById("render_input_error");
+
+    if (input.length < 3) {
+        showErrorRef.innerHTML = "Please enter at least 3 letters";
+        return true;
     }
 
-    renderArea.innerHTML = cartContent;
+    showErrorRef.innerHTML = "";
+
+    return pokemon.name.toLowerCase().startsWith(input);
 }
 
-function renderPokemonCartShiny() {
-    let renderArea = document.getElementById("pokemon_render_area");
-    let cartContent = "";
-    let type2HTML = ""
-
-    console.log(loadedPokemonDetails);
-
-    for (let index = 0; index < loadedPokemonDetails.length; index++) {
-        const currentPokemon = loadedPokemonDetails[index];
-        let id = currentPokemon.id;
-        let name = currentPokemon.name.charAt(0).toUpperCase() + currentPokemon.name.slice(1);
-        let url = currentPokemon.sprites.front_shiny;
-        let type1 = currentPokemon.types[0].type.name;
-        let type2 = currentPokemon.types[1]?.type.name;
-        let type2Check = type2 ? `<p>${type2}</p>` : ""
-        type2HTML = type2Check
-        let playAudio = `audio{index}.ogg`
-        playAudio.play()
-
-        console.log(renderPokemonCartHTML(index, name, url, id, type1, type2Check, audio));
-        cartContent += renderPokemonCartHTML(index, name, url, id, type1, type2Check, audio);
-    }
-
-    renderArea.innerHTML = cartContent;
-}
-
+console.log(loadedPokemonDetails);

@@ -1,60 +1,168 @@
 main {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    width: 100%;
-    background-color: rgb(255, 255, 255);
-    flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  flex: 1;
+  padding: 32px 20px 20px;
+  background-color: var(--background-color-main);
 }
 
 .pokemon_render_area {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    background-color: white;
-    max-width: 1920px;
-    width: 100%;
-    gap: 16px;
-    padding: 16px;
-    margin-top: 30px;
-    color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  max-width: var(--content-limitation);
+  width: 100%;
+  gap: 28px;
+  padding: 8px 0 24px;
+  color: var(--text-primary);
 }
 
 #error_msg {
-    display: flex;
-    align-items: center;
-    height: 87dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60dvh;
+  width: 100%;
 }
 
 #error_msg h2 {
-    background-color: rgba(215, 215, 215, 0.557);
-    border: 1px black solid;
-    border-radius: 50px;
-    color: rgb(0, 0, 0);
-    padding: 16px;
+  background-color: #fee2e2;
+  border: 1px solid #fecaca;
+  border-radius: 16px;
+  color: #991b1b;
+  padding: 16px 20px;
+  font-size: 10px;
 }
 
 .pkmn_card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 300px;
-    min-width: 200px;
-    background-color: rgb(227, 227, 227);
-    border-radius: 10px;
-    gap: 8px;
-    color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 360px;
+  min-width: 240px;
+  padding: 24px 20px 20px;
+  background-color: var(--card-background);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  gap: 14px;
+  color: var(--text-primary);
+  box-shadow: var(--shadow-card);
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.pkmn_card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .pkmn_img {
-    
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.12));
+}
+
+.pkmn_card:hover .pkmn_img {
+  transform: translateY(-6px) scale(1.08);
+  filter:
+    drop-shadow(0 0 2px rgba(255, 255, 255, 0.9))
+    drop-shadow(0 0 6px rgba(255, 255, 255, 0.7))
+    drop-shadow(0 10px 16px rgba(0, 0, 0, 0.14));
+}
+
+.pokedex_number {
+  font-size: 9px;
+  color: var(--text-light);
+}
+
+#pkmn_name {
+  font-size: 14px;
+  color: var(--text-primary);
+  text-align: center;
+  line-height: 1.6;
+  text-transform: capitalize;
 }
 
 .pkmn_type {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pkmn_type p {
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 9px;
+  line-height: 1.4;
+  text-transform: uppercase;
+  border: 1px solid #dbe2ea;
+  background-color: #f8fafc;
+  color: var(--text-primary);
+}
+
+.pkmn_card button {
+  margin-top: auto;
+  width: 100%;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 12px;
+  background-color: #f1f5f9;
+  color: var(--text-primary);
+  font-size: 8px;
+  line-height: 1.5;
+}
+
+.pkmn_card button:hover {
+  background-color: #e2e8f0;
+}
+
+@media (max-width: 768px) {
+  main {
+    padding: 24px 16px 16px;
+  }
+
+  .pokemon_render_area {
+    gap: 18px;
+  }
+
+  .pkmn_card {
+    min-width: 100%;
+    max-width: 420px;
+    min-height: 330px;
+    padding: 22px 18px 18px;
+  }
+
+  .pkmn_card:hover {
+    transform: translateY(-6px) scale(1.02);
+  }
+
+  .pkmn_img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .pokedex_number {
+    font-size: 8px;
+  }
+
+  #pkmn_name {
+    font-size: 12px;
+  }
+
+  .pkmn_type p {
+    font-size: 8px;
+    padding: 7px 10px;
+  }
+
+  .pkmn_card button {
+    font-size: 7px;
+  }
 }

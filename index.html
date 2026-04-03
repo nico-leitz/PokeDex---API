@@ -9,18 +9,21 @@
     <title>Pokedex - API</title>
 </head>
 <body onload="init();">
-    <header>
-        <section class="header">
-            <div class="header_title">
-                <h2>PokeDex</h2>
-            </div>
+  <header>
+    <section class="header">
+        <div class="header_title">
+            <h2>PokeDex</h2>
+        </div>
+        <div class="header_search_wrapper">
             <div class="header_input">
-                <input onclick="checkPokemonWithLetters()" id="header_input_field" type="text" placeholder="...search">
-                <p id="render_input_error"></p>
-                <img id="search_icon" src="./assets/img/header_input_search.png" alt="search icon">
+                <input id="header_input_field" type="text" placeholder="...search">
+                <img onclick="renderPokemonCart()" id="search_icon" src="./assets/img/header_input_search.png" alt="search icon">
             </div>
-        </section>
-    </header>
+            <p id="render_input_error"></p>
+        </div>
+
+    </section>  
+</header>
 
     <main>
         <section id="pokemon_render_area" class="pokemon_render_area">
