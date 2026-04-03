@@ -2,12 +2,20 @@ let fetchUrl = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20";
 let fetchUrlTypes = "https://pokeapi.co/api/v2/type/"
 let loadedPokemonDetails = [];
 let loadedPokemonTypes = [];
+let baseAudioUrl = "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/"
 
 async function init() {
     await getJsonObject();
     renderPokemonCart();
     getJsonObjectForPokemonTypes();
 }
+
+async function initShiny() {
+    await getJsonObject();
+    renderPokemonCartShiny()
+    getJsonObjectForPokemonTypes();
+}
+
 
 async function getJsonObject() {
     try {
@@ -26,6 +34,7 @@ async function getJsonObject() {
             }
            
         }
+        
          console.log(loadedPokemonDetails)
 
       } 
@@ -67,8 +76,8 @@ function renderPokemonDetailsLoop() {
     
 }
 
-function checkPokemonType2() {
-    
+function playPokemonAudio(index) {
+    new Audio(loadedPokemonDetails[index].cries.latest).play();
 }
 
 function checkPokemonWithLetters() {
@@ -87,18 +96,18 @@ function checkPokemonWithLetters() {
 function renderPokemonCart() {
     let renderArea = document.getElementById("pokemon_render_area");
     let cartContent = "";
-    let type2HTML = ""
 
     console.log(loadedPokemonDetails);
 
     for (let index = 0; index < loadedPokemonDetails.length; index++) {
+        console.log(loadedPokemonDetails)
         const currentPokemon = loadedPokemonDetails[index];
         let id = currentPokemon.id;
         let name = currentPokemon.name.charAt(0).toUpperCase() + currentPokemon.name.slice(1);
         let url = currentPokemon.sprites.front_default;
         let type1 = currentPokemon.types[0].type.name;
         let type2 = currentPokemon.types[1]?.type.name;
-        
+      
         let type2Check = type2 ? `<p>${type2}</p>` : ""
 
         type2HTML = type2Check
@@ -109,3 +118,30 @@ function renderPokemonCart() {
 
     renderArea.innerHTML = cartContent;
 }
+
+function renderPokemonCartShiny() {
+    let renderArea = document.getElementById("pokemon_render_area");
+    let cartContent = "";
+    let type2HTML = ""
+
+    console.log(loadedPokemonDetails);
+
+    for (let index = 0; index < loadedPokemonDetails.length; index++) {
+        const currentPokemon = loadedPokemonDetails[index];
+        let id = currentPokemon.id;
+        let name = currentPokemon.name.charAt(0).toUpperCase() + currentPokemon.name.slice(1);
+        let url = currentPokemon.sprites.front_shiny;
+        let type1 = currentPokemon.types[0].type.name;
+        let type2 = currentPokemon.types[1]?.type.name;
+        let type2Check = type2 ? `<p>${type2}</p>` : ""
+        type2HTML = type2Check
+        let playAudio = `audio{index}.ogg`
+        playAudio.play()
+
+        console.log(renderPokemonCartHTML(index, name, url, id, type1, type2Check, audio));
+        cartContent += renderPokemonCartHTML(index, name, url, id, type1, type2Check, audio);
+    }
+
+    renderArea.innerHTML = cartContent;
+}
+
