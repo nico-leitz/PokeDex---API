@@ -10,12 +10,6 @@ async function init() {
     getJsonObjectForPokemonTypes();
 }
 
-async function initShiny() {
-    await getJsonObject();
-    renderPokemonCartShiny()
-    getJsonObjectForPokemonTypes();
-}
-
 async function getJsonObject() {
     try {
         let fetchUrlHttpResponse = await fetch(fetchUrl);
